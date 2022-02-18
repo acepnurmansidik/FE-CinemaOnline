@@ -1,0 +1,34 @@
+/* NAVBAR */
+.lp-navbar {
+  height: 10vh;
+}
+
+.lp-navbar-buttons {
+  display: flex;
+  justify-content: space-evenly;
+  padding: 25.2px 0;
+}
+
+.lp-navbar .lp-navbar-img {
+  display: flex;
+  justify-content: start;
+  align-items: center;
+}
+
+/* COUR */
+/* default */
+.carousel-caption {
+  text-align: left;
+}
+/* costume */
+.lp-courosel {
+  height: 57vh;
+  box-sizing: border-box;
+  font-size: 1.15em;
+}
+
+/* LIST */
+.lp-listfilm {
+  background-color: cadetblue;
+  height: 33vh;
+}

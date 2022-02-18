@@ -1,6 +1,9 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import App from "./App";
+// CSS Custome
+import "./style/root.css";
+import "./style/landing-page.css";
 
 ReactDOM.render(
   <React.StrictMode>

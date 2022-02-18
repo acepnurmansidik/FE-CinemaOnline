@@ -1,5 +1,18 @@
 import React from "react";
+import { ToastContainer } from "react-toastify";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import "react-toastify/dist/ReactToastify.css";
+import "bootstrap/dist/css/bootstrap.min.css";
+import LandingPage from "./pages/organism/LandingPage/LandingPage";
 
 export default function App() {
-  return <div>HEloo</div>;
+  return (
+    <>
+      <Router>
+        <Routes>
+          <Route exact path="/" element={<LandingPage />} />
+        </Routes>
+      </Router>
+    </>
+  );
 }
