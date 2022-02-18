@@ -64,10 +64,8 @@
 }
 
 .lp-list-film {
-  box-sizing: border-box;
   display: flex;
-  overflow-x: scroll;
-  width: 100%;
+  width: 50em;
 }
 
 .lp-card-title {

@@ -15,6 +15,20 @@ export default function ListsFilm() {
               </Link>
             </Card.Header>
           </Card>
+          <Card style={{ width: "12rem" }}>
+            <Card.Header>
+              <Link to={"/asd"}>
+                <Card.Img className="lp-card-img" src="../assets/img/sp.png" />
+              </Link>
+            </Card.Header>
+          </Card>
+          <Card style={{ width: "12rem" }}>
+            <Card.Header>
+              <Link to={"/asd"}>
+                <Card.Img className="lp-card-img" src="../assets/img/sp.png" />
+              </Link>
+            </Card.Header>
+          </Card>
         </div>
       </Col>
     </Row>
