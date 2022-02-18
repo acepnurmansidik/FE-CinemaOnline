@@ -27,6 +27,27 @@
   font-size: 1.15em;
 }
 
+.lp-courosel-caption h1 {
+  font-weight: 900;
+  font-size: 3em;
+  margin-bottom: 20px;
+}
+
+.lp-courosel-caption p {
+  size: 1.125em;
+  font-weight: 900;
+}
+
+.lp-courosel-caption p:nth-child(3) {
+  color: #cd2e71;
+}
+
+.lp-courosel-caption p:nth-child(4) {
+  size: 1.125em;
+  font-weight: 400;
+  font-size: 0.875em;
+}
+
 /* LIST */
 .lp-listfilm {
   background-color: cadetblue;
