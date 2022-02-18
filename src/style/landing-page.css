@@ -50,6 +50,36 @@
 
 /* LIST */
 .lp-listfilm {
-  background-color: cadetblue;
   height: 33vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-sizing: border-box;
+  padding: 0.5em;
+}
+
+.lp-listfilm p {
+  font-weight: 800;
+  font-size: 1.5em;
+}
+
+.lp-list-film {
+  box-sizing: border-box;
+  display: flex;
+  overflow-x: scroll;
+  width: 100%;
+}
+
+.lp-card-title {
+  color: #fff;
+  text-align: center;
+  font-weight: 500;
+}
+.lp-card-img {
+  height: 100%;
+  width: 100%;
+}
+/* reset default */
+.card {
+  background-color: transparent;
 }

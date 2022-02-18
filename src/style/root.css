@@ -49,9 +49,9 @@
   color: #fff;
 }
 
-::-webkit-scrollbar {
+/* ::-webkit-scrollbar {
   width: 0px;
-}
+} */
 
 .text-pointer {
   cursor: pointer;

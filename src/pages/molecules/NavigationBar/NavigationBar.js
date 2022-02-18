@@ -2,7 +2,7 @@ import React from "react";
 import { Button, Col, Modal, Row } from "react-bootstrap";
 import { Link } from "react-router-dom";
 
-export default function LPNavbar() {
+export default function NavigationBar() {
   const [loginModalShow, setloginModalShow] = React.useState(false);
   const [registerModalShow, setregisterModalShow] = React.useState(false);
   return (
