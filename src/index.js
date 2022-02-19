@@ -9,6 +9,7 @@ import "./style/detail-film.css";
 import "./style/list-film.css";
 import "./style/my-profile.css";
 import "./style/create-film.css";
+import "./style/transactions.css";
 
 ReactDOM.render(
   <React.StrictMode>
