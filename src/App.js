@@ -5,6 +5,7 @@ import "react-toastify/dist/ReactToastify.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import LandingPage from "./pages/organism/LandingPage/LandingPage";
 import DetailFilm from "./pages/organism/DetailFilm/DetailFilm";
+import MyList from "./pages/organism/MyList/MyList";
 
 export default function App() {
   return (
@@ -13,6 +14,7 @@ export default function App() {
         <Routes>
           <Route exact path="/" element={<LandingPage />} />
           <Route exact path="/film-detail/:id" element={<DetailFilm />} />
+          <Route exact path="/my-list" element={<MyList />} />
         </Routes>
       </Router>
       <ToastContainer />

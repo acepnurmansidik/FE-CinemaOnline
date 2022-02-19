@@ -1,0 +1,18 @@
+/*  */
+.list-title-container {
+  margin-top: 1em;
+}
+.list-title-container p {
+  font-size: 2em;
+  font-weight: 900;
+}
+/* movie list */
+.list-film-user {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.list-film-user img {
+  height: 17em;
+  margin: 1em 1.15em;
+}
