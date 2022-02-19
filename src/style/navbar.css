@@ -1,0 +1,58 @@
+/* NAVBAR */
+.navbar {
+  height: 10vh;
+}
+
+.navbar-buttons {
+  display: flex;
+  justify-content: space-evenly;
+  padding: 25.2px 0;
+}
+
+.navbar-btnLogin {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.navbar .navbar-img {
+  display: flex;
+  justify-content: start;
+  align-items: center;
+}
+
+/* default reset */
+.show > .btn-primary.dropdown-toggle,
+.show > .btn-primary.dropdown-toggle:focus {
+  border: none;
+  background-color: transparent;
+  box-shadow: none;
+}
+
+.btn-group .btn-primary,
+.btn-message,
+.btn-notif {
+  width: 3rem;
+}
+
+.btn-group:nth-child(3) {
+  width: 8rem;
+}
+/* Dropdown--------------- */
+.dropdown-toggle {
+  white-space: normal;
+}
+
+.dropdown-toggle::after {
+  content: none;
+}
+
+.dropdown-menu {
+  background: #0b0b0b;
+  color: #fff;
+  margin-top: 0.5rem;
+  border-radius: 5px;
+}
+
+.dropMenuItem {
+  background-color: blueviolet;
+}

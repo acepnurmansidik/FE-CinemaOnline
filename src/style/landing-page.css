@@ -1,20 +1,3 @@
-/* NAVBAR */
-.lp-navbar {
-  height: 10vh;
-}
-
-.lp-navbar-buttons {
-  display: flex;
-  justify-content: space-evenly;
-  padding: 25.2px 0;
-}
-
-.lp-navbar .lp-navbar-img {
-  display: flex;
-  justify-content: start;
-  align-items: center;
-}
-
 /* COUR */
 /* default */
 .carousel-caption {
@@ -77,6 +60,19 @@
   height: 100%;
   width: 100%;
 }
+
+/* MODAL */
+#contained-modal-title-vcenter {
+  color: #cd2e71;
+}
+.form-text {
+  text-align: center;
+}
+.modal-content {
+  background: #0b0b0b;
+  color: #b7b7b7;
+}
+
 /* reset default */
 .card {
   background-color: transparent;

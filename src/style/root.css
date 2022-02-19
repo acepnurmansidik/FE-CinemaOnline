@@ -55,10 +55,17 @@
 
 .text-pointer {
   cursor: pointer;
+  display: inline-block;
 }
 
 /*  */
 .base-btn,
 .base-btn:hover {
+  background-color: #cd2e71;
+}
+
+.btn-fullWidth,
+.btn-fullWidth:hover {
+  width: 100%;
   background-color: #cd2e71;
 }
