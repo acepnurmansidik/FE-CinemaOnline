@@ -7,6 +7,7 @@ import "./style/navbar.css";
 import "./style/landing-page.css";
 import "./style/detail-film.css";
 import "./style/list-film.css";
+import "./style/my-profile.css";
 
 ReactDOM.render(
   <React.StrictMode>

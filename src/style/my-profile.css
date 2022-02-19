@@ -1,0 +1,34 @@
+.profile-container {
+  color: #616161;
+  font-weight: 400;
+  font-size: 1.125em;
+  padding: 1em 4em;
+}
+
+.profile-info {
+  display: flex;
+  align-items: center;
+}
+
+.profile-info img {
+  height: 14em;
+}
+
+/*  */
+.profile-info-biodata {
+  margin: 0 1em;
+}
+
+.profile-info-biodata h4 {
+  color: #cd2e71;
+  font-weight: 700;
+}
+
+/* MIX */
+.profile-info-user h1,
+.profile-history-transactions h1 {
+  font-size: 2.9em;
+  font-weight: 700;
+  color: #fff;
+  margin: 1em 0;
+}

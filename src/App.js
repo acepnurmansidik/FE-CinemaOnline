@@ -6,6 +6,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import LandingPage from "./pages/organism/LandingPage/LandingPage";
 import DetailFilm from "./pages/organism/DetailFilm/DetailFilm";
 import MyList from "./pages/organism/MyList/MyList";
+import MyProfile from "./pages/organism/MyProfile/MyProfile";
 
 export default function App() {
   return (
@@ -15,6 +16,7 @@ export default function App() {
           <Route exact path="/" element={<LandingPage />} />
           <Route exact path="/film-detail/:id" element={<DetailFilm />} />
           <Route exact path="/my-list" element={<MyList />} />
+          <Route exact path="/my-profile" element={<MyProfile />} />
         </Routes>
       </Router>
       <ToastContainer />
