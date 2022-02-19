@@ -111,4 +111,10 @@ header p {
   color: #616161;
 }
 
+.detail-browse-attachment input[type="file"]::before,
+.detail-browse-attachment input[type="file"] {
+  content: "Attach Payment";
+  width: 8.8rem;
+}
+
 /* Query */

@@ -7,6 +7,7 @@ import LandingPage from "./pages/organism/LandingPage/LandingPage";
 import DetailFilm from "./pages/organism/DetailFilm/DetailFilm";
 import MyList from "./pages/organism/MyList/MyList";
 import MyProfile from "./pages/organism/MyProfile/MyProfile";
+import CreateFilm from "./pages/organism/CreateFilm/CreateFilm";
 
 export default function App() {
   return (
@@ -14,9 +15,10 @@ export default function App() {
       <Router>
         <Routes>
           <Route exact path="/" element={<LandingPage />} />
-          <Route exact path="/detail-film/:id" element={<DetailFilm />} />
-          <Route exact path="/my-list" element={<MyList />} />
-          <Route exact path="/my-profile" element={<MyProfile />} />
+          <Route exact path="/film/:id" element={<DetailFilm />} />
+          <Route exact path="/my-film" element={<MyList />} />
+          <Route exact path="/profile" element={<MyProfile />} />
+          <Route exact path="/film" element={<CreateFilm />} />
         </Routes>
       </Router>
       <ToastContainer />

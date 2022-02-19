@@ -1,0 +1,41 @@
+.create-film-title {
+  font-size: 1.5em;
+  font-weight: 900;
+  margin-top: 1em;
+  margin-bottom: 0.4em;
+}
+
+/* INPUT GROUP */
+.textarea {
+  height: 14rem;
+}
+
+.create-film-inputGroup {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.create-film-inputGroup .form-control {
+  margin-bottom: 0;
+}
+
+.title-input {
+  flex: 5;
+}
+
+.btn-input-file {
+  flex: 1;
+  margin: 0.5em -4.5em 0.5em 0.5em;
+}
+
+.create-post-btn {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.form-input-film input[type="file"]::before,
+.form-input-film input[type="file"] {
+  content: "Attach Thumbnail";
+  width: 9.6rem;
+}
