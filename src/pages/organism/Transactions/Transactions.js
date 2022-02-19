@@ -41,7 +41,7 @@ export default function Transactions() {
                     />
                   </Dropdown.Toggle>
 
-                  <Dropdown.Menu>
+                  <Dropdown.Menu variant="dark">
                     <Dropdown.Item href="#/action-2">
                       <p className="approved">Approved</p>
                     </Dropdown.Item>
