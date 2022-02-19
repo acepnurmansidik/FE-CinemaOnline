@@ -1,9 +1,11 @@
 import React from "react";
 import { Container, Row } from "react-bootstrap";
+import NavigationBar from "../../molecules/NavigationBar/NavigationBar";
 
 export default function MyList() {
   return (
     <Container>
+      <NavigationBar />
       <Row className="list-title-container">
         <p>My List Film</p>
       </Row>
