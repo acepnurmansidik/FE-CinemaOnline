@@ -38,7 +38,7 @@ export default function CreateFilm() {
                 className="form-control"
                 placeholder="Title"
                 name="title"
-                onChange={null}
+                onChange={handleOnChange}
               />
             </Form.Group>
             <Form.Group
@@ -63,7 +63,7 @@ export default function CreateFilm() {
               className="form-control"
               placeholder="Category"
               name="category"
-              onChange={null}
+              onChange={handleOnChange}
             />
           </Form.Group>
 
@@ -73,7 +73,7 @@ export default function CreateFilm() {
               className="form-control"
               placeholder="Price"
               name="price"
-              onChange={null}
+              onChange={handleOnChange}
             />
           </Form.Group>
 
@@ -83,7 +83,7 @@ export default function CreateFilm() {
               className="form-control"
               placeholder="filmUrl"
               name="filmUrl"
-              onChange={null}
+              onChange={handleOnChange}
             />
           </Form.Group>
 

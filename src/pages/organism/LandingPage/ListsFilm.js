@@ -31,6 +31,84 @@ export default function ListsFilm() {
           </Card>
         </div>
       </Col>
+      <Col sm={12}>
+        <p>List film</p>
+        <div className="lp-list-film">
+          <Card style={{ width: "12rem" }}>
+            <Card.Header>
+              <Link to={"/asd"}>
+                <Card.Img className="lp-card-img" src="../assets/img/sp.png" />
+              </Link>
+            </Card.Header>
+          </Card>
+          <Card style={{ width: "12rem" }}>
+            <Card.Header>
+              <Link to={"/asd"}>
+                <Card.Img className="lp-card-img" src="../assets/img/sp.png" />
+              </Link>
+            </Card.Header>
+          </Card>
+          <Card style={{ width: "12rem" }}>
+            <Card.Header>
+              <Link to={"/asd"}>
+                <Card.Img className="lp-card-img" src="../assets/img/sp.png" />
+              </Link>
+            </Card.Header>
+          </Card>
+        </div>
+      </Col>
+      <Col sm={12}>
+        <p>List film</p>
+        <div className="lp-list-film">
+          <Card style={{ width: "12rem" }}>
+            <Card.Header>
+              <Link to={"/asd"}>
+                <Card.Img className="lp-card-img" src="../assets/img/sp.png" />
+              </Link>
+            </Card.Header>
+          </Card>
+          <Card style={{ width: "12rem" }}>
+            <Card.Header>
+              <Link to={"/asd"}>
+                <Card.Img className="lp-card-img" src="../assets/img/sp.png" />
+              </Link>
+            </Card.Header>
+          </Card>
+          <Card style={{ width: "12rem" }}>
+            <Card.Header>
+              <Link to={"/asd"}>
+                <Card.Img className="lp-card-img" src="../assets/img/sp.png" />
+              </Link>
+            </Card.Header>
+          </Card>
+        </div>
+      </Col>
+      <Col sm={12}>
+        <p>List film</p>
+        <div className="lp-list-film">
+          <Card style={{ width: "12rem" }}>
+            <Card.Header>
+              <Link to={"/asd"}>
+                <Card.Img className="lp-card-img" src="../assets/img/sp.png" />
+              </Link>
+            </Card.Header>
+          </Card>
+          <Card style={{ width: "12rem" }}>
+            <Card.Header>
+              <Link to={"/asd"}>
+                <Card.Img className="lp-card-img" src="../assets/img/sp.png" />
+              </Link>
+            </Card.Header>
+          </Card>
+          <Card style={{ width: "12rem" }}>
+            <Card.Header>
+              <Link to={"/asd"}>
+                <Card.Img className="lp-card-img" src="../assets/img/sp.png" />
+              </Link>
+            </Card.Header>
+          </Card>
+        </div>
+      </Col>
     </Row>
   );
 }

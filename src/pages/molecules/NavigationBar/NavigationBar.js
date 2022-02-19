@@ -1,5 +1,12 @@
 import React, { useState } from "react";
-import { Button, Col, Dropdown, Modal, Row, Form } from "react-bootstrap";
+import {
+  Button,
+  Modal,
+  Form,
+  Navbar,
+  Container,
+  Dropdown,
+} from "react-bootstrap";
 import { Link } from "react-router-dom";
 
 export default function NavigationBar() {
@@ -18,117 +25,135 @@ export default function NavigationBar() {
   };
 
   return (
-    <Row className="navbar">
-      <Col sm={10}>
-        <div className="navbar-img">
-          <Link to={"/"}>
-            <img src="../assets/img/Icon.svg" height={80} alt="" />
-          </Link>
-        </div>
-      </Col>
-      <Col sm={2}>
-        {isLogin === true ? (
-          <div className="navbar-btnLogin">
-            <Dropdown>
-              <Dropdown.Toggle id="dropdown-basic">
-                <img
-                  src="../assets/icons/profile.svg"
-                  width={50}
-                  height={50}
-                  alt=""
-                />
-              </Dropdown.Toggle>
-
-              <Dropdown.Menu>
-                <Dropdown.Item style={{ display: "flex" }} href="#/action-2">
-                  <img
-                    src="../assets/icons/user 2.svg"
-                    width={25}
-                    height={25}
-                    alt=""
-                  />
-                  <p
-                    style={{
-                      color: "#FFF",
-                      fontWeight: "800",
-                      marginLeft: "5px",
-                    }}
-                  >
-                    Profile
-                  </p>
-                </Dropdown.Item>
-                <Dropdown.Item style={{ display: "flex" }} href="#/action-2">
-                  <img
-                    src="../assets/icons/movies-menu.svg"
-                    width={25}
-                    height={25}
-                    alt=""
-                  />
-                  <p
-                    style={{
-                      color: "#FFF",
-                      fontWeight: "800",
-                      marginLeft: "5px",
-                    }}
-                  >
-                    Profile
-                  </p>
-                </Dropdown.Item>
-                <Dropdown.Divider />
-                <Dropdown.Item style={{ display: "flex" }} href="#/action-2">
-                  <img
-                    src="../assets/icons/logout 1.svg"
-                    width={25}
-                    height={25}
-                    alt=""
-                  />
-                  <p
-                    style={{
-                      color: "#FFF",
-                      fontWeight: "800",
-                      marginLeft: "5px",
-                    }}
-                  >
-                    Profile
-                  </p>
-                </Dropdown.Item>
-              </Dropdown.Menu>
-            </Dropdown>
-          </div>
-        ) : (
-          <div className="navbar-buttons">
-            <div className="btn-login">
-              <Button
-                style={{ fontWeight: "900" }}
-                onClick={() => setloginModalShow(true)}
-              >
-                Login
-              </Button>
-
-              <LoginModalShow
-                show={loginModalShow}
-                onHide={() => setloginModalShow(false)}
-                handleCloseLogin={handleCloseLogin}
-              />
+    <>
+      <Navbar className="container-navbar">
+        <Container
+          style={{ backgroundColor: "#0b0b0b" }}
+          className="container-inner-navbar"
+        >
+          <Navbar.Brand href="/">
+            <div className="navbar-img">
+              <Link to={"/"}>
+                <img src="../assets/img/Icon.svg" height={70} alt="" />
+              </Link>
             </div>
-            <div className="btn-register">
-              <Button
-                className="base-btn"
-                onClick={() => setregisterModalShow(true)}
-              >
-                Register
-              </Button>
+          </Navbar.Brand>
+          <Navbar.Collapse className="justify-content-end">
+            <Navbar.Text>
+              {isLogin === true ? (
+                <div className="navbar-btnLogin">
+                  <Dropdown>
+                    <Dropdown.Toggle id="dropdown-basic">
+                      <img
+                        src="../assets/icons/profile.svg"
+                        width={50}
+                        height={50}
+                        alt=""
+                      />
+                    </Dropdown.Toggle>
 
-              <RegisterModalShow
-                show={registerModalShow}
-                onHide={() => setregisterModalShow(false)}
-                handleCloseRegister={handleCloseRegister}
-              />
-            </div>
-          </div>
-        )}
-      </Col>
-    </Row>
+                    <Dropdown.Menu variant="dark">
+                      <Dropdown.Item
+                        style={{ display: "flex" }}
+                        href="#/action-2"
+                      >
+                        <img
+                          src="../assets/icons/user 2.svg"
+                          width={25}
+                          height={25}
+                          alt=""
+                        />
+                        <p
+                          style={{
+                            color: "#FFF",
+                            fontWeight: "800",
+                            marginLeft: "5px",
+                          }}
+                        >
+                          Profile
+                        </p>
+                      </Dropdown.Item>
+                      <Dropdown.Item
+                        style={{ display: "flex" }}
+                        href="#/action-2"
+                      >
+                        <img
+                          src="../assets/icons/movies-menu.svg"
+                          width={25}
+                          height={25}
+                          alt=""
+                        />
+                        <p
+                          style={{
+                            color: "#FFF",
+                            fontWeight: "800",
+                            marginLeft: "5px",
+                          }}
+                        >
+                          Profile
+                        </p>
+                      </Dropdown.Item>
+                      <Dropdown.Divider />
+                      <Dropdown.Item
+                        style={{ display: "flex" }}
+                        href="#/action-2"
+                      >
+                        <img
+                          src="../assets/icons/logout 1.svg"
+                          width={25}
+                          height={25}
+                          alt=""
+                        />
+                        <p
+                          style={{
+                            color: "#FFF",
+                            fontWeight: "800",
+                            marginLeft: "5px",
+                          }}
+                        >
+                          Profile
+                        </p>
+                      </Dropdown.Item>
+                    </Dropdown.Menu>
+                  </Dropdown>
+                </div>
+              ) : (
+                <div className="navbar-buttons">
+                  <div className="btn-login">
+                    <Button
+                      style={{ fontWeight: "900" }}
+                      onClick={() => setloginModalShow(true)}
+                    >
+                      Login
+                    </Button>
+
+                    <LoginModalShow
+                      show={loginModalShow}
+                      onHide={() => setloginModalShow(false)}
+                      handleCloseLogin={handleCloseLogin}
+                    />
+                  </div>
+                  <div className="btn-register">
+                    <Button
+                      className="base-btn"
+                      onClick={() => setregisterModalShow(true)}
+                    >
+                      Register
+                    </Button>
+
+                    <RegisterModalShow
+                      show={registerModalShow}
+                      onHide={() => setregisterModalShow(false)}
+                      handleCloseRegister={handleCloseRegister}
+                    />
+                  </div>
+                </div>
+              )}
+            </Navbar.Text>
+          </Navbar.Collapse>
+        </Container>
+      </Navbar>
+    </>
   );
 }
 
