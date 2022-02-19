@@ -47,17 +47,24 @@ header p {
 .df-synopsis-film {
   flex: 3;
   font-size: 1.125em;
-  font-weight: 400;
 }
 
-.df-synopsis-film p:nth-child(1) {
+.synopsis-info {
+  font-weight: 900;
+}
+
+.synopsis-info p:nth-child(1) {
   font-size: 1.5em;
-  font-weight: 900;
 }
 
-.df-synopsis-film p:nth-child(2) {
-  font-weight: 900;
+.synopsis-info p:nth-child(2) {
   color: #cd2e71;
 }
 
+.text-synopsis {
+  text-align: justify;
+  box-sizing: border-box;
+  height: 27vh;
+  overflow-y: scroll;
+}
 /* Query */
