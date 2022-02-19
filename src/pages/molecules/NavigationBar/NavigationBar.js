@@ -98,7 +98,12 @@ export default function NavigationBar() {
         ) : (
           <div className="navbar-buttons">
             <div className="btn-login">
-              <Button onClick={() => setloginModalShow(true)}>Login</Button>
+              <Button
+                style={{ fontWeight: "900" }}
+                onClick={() => setloginModalShow(true)}
+              >
+                Login
+              </Button>
 
               <LoginModalShow
                 show={loginModalShow}

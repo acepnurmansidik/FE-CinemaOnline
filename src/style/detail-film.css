@@ -51,6 +51,7 @@ header p {
 
 .synopsis-info {
   font-weight: 900;
+  letter-spacing: 2px;
 }
 
 .synopsis-info p:nth-child(1) {
@@ -59,6 +60,23 @@ header p {
 
 .synopsis-info p:nth-child(2) {
   color: #cd2e71;
+}
+
+.text-synopsis::-webkit-scrollbar {
+  width: 5px;
+}
+.text-synopsis::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.text-synopsis::-webkit-scrollbar-thumb {
+  background: rgb(199, 199, 199, 0.1);
+  border-radius: 5px;
+}
+
+.text-synopsis::-webkit-scrollbar-thumb:hover {
+  background: rgb(199, 199, 199, 0.3);
+  border-radius: 5px;
 }
 
 .text-synopsis {

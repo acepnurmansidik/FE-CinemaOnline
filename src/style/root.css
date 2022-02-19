@@ -69,10 +69,12 @@ body {
 .base-btn,
 .base-btn:hover {
   background-color: #cd2e71;
+  font-weight: 900;
 }
 
 .btn-fullWidth,
 .btn-fullWidth:hover {
   width: 100%;
   background-color: #cd2e71;
+  font-weight: 900;
 }
