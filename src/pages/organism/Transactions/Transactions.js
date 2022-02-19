@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { Container, Dropdown, DropdownButton, Table } from "react-bootstrap";
+import React from "react";
+import { Container, Dropdown, Table } from "react-bootstrap";
 import NavigationBar from "../../molecules/NavigationBar/NavigationBar";
 
 export default function Transactions() {
