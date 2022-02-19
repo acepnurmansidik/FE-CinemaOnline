@@ -65,6 +65,11 @@ body {
   display: inline-block;
 }
 
+.text-base-color {
+  color: #cd2e71;
+  display: inline-block;
+}
+
 /*  */
 .base-btn,
 .base-btn:hover {
@@ -77,4 +82,27 @@ body {
   width: 100%;
   background-color: #cd2e71;
   font-weight: 900;
+}
+
+/* btn type file */
+input[type="file"],
+input[type="file"]::before {
+  content: "Browse";
+  background: #cd2e71;
+  width: 12.5rem;
+  font-weight: 800;
+  height: 40px;
+  display: block;
+  text-align: left;
+  position: relative;
+  margin: 0 5px;
+  left: -6px;
+  border: none;
+  top: -1px;
+  line-height: 30px;
+  color: #ffffff;
+  padding-left: 5px;
+  display: block;
+  border-radius: 5px;
+  cursor: pointer;
 }

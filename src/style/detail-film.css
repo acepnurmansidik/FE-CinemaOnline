@@ -85,4 +85,30 @@ header p {
   height: 27vh;
   overflow-y: scroll;
 }
+
+/* MODAL */
+.detailModal-attachment {
+  font-size: 1.125em;
+  color: #fff;
+}
+.title-attachment {
+  font-weight: 900;
+  color: #fff;
+  font-size: 1.5em;
+}
+
+.info-attachment {
+  font-weight: 800;
+}
+
+.detail-browse-attachment {
+  display: flex;
+  margin-top: 0.5em;
+}
+
+.detail-browse-attachment p {
+  font-size: 0.8em;
+  color: #616161;
+}
+
 /* Query */
