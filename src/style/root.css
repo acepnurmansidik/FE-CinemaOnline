@@ -1,7 +1,14 @@
-#root {
+body {
   background: #0b0b0b;
   height: 100%;
   width: 100%;
+  overflow-y: scroll;
+  font-family: "Montserrat", sans-serif;
+  font-family: "Sen", sans-serif;
+}
+
+#root {
+  background: #0b0b0b;
   color: #fff;
   display: flex;
   justify-content: center;
@@ -49,9 +56,9 @@
   color: #fff;
 }
 
-/* ::-webkit-scrollbar {
+::-webkit-scrollbar {
   width: 0px;
-} */
+}
 
 .text-pointer {
   cursor: pointer;
