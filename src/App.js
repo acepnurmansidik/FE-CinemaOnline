@@ -14,7 +14,7 @@ export default function App() {
       <Router>
         <Routes>
           <Route exact path="/" element={<LandingPage />} />
-          <Route exact path="/film-detail/:id" element={<DetailFilm />} />
+          <Route exact path="/detail-film/:id" element={<DetailFilm />} />
           <Route exact path="/my-list" element={<MyList />} />
           <Route exact path="/my-profile" element={<MyProfile />} />
         </Routes>
