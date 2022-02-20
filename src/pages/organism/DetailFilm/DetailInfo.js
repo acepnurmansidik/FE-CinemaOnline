@@ -1,8 +1,11 @@
 import React, { useState } from "react";
 import { Button, Col, Form, Modal } from "react-bootstrap";
+import ReactPlayer from "react-player";
 
 export default function DetailInfo() {
   const [paymentModalShow, setPaymentModalShow] = useState();
+  const [play, setPlay] = useState(false);
+  const [isLogin, setIsLogin] = useState(false);
   return (
     <Col sm={8} className="df-info">
       <header>
@@ -24,7 +27,16 @@ export default function DetailInfo() {
         </div>
       </header>
       <div className="df-img-jumbo">
-        <img src="../assets/img/img-jumbo.png" alt="" />
+        <ReactPlayer
+          url={`https://www.youtube.com/watch?v=7sDY4m8KNLc`}
+          light={true}
+          controls={true}
+          pip={false}
+          stopOnUnmount={false}
+          width="100%"
+          height="100%"
+          onDisablePIP={false}
+        />
       </div>
       <div className="df-synopsis-film">
         <div className="synopsis-info">
