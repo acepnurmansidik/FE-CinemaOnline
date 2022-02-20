@@ -1,17 +1,13 @@
 import React from "react";
 import { Dropdown } from "react-bootstrap";
+import ImageProfile from "../../atom/ImageProfile/ImageProfile";
 
-export default function AdminDropdownMenu() {
+export default function AdminDropdownMenu({ isAdmin }) {
   return (
     <div className="navbar-btnLogin">
       <Dropdown>
         <Dropdown.Toggle id="dropdown-basic">
-          <img
-            src="../assets/icons/profile.svg"
-            width={50}
-            height={50}
-            alt=""
-          />
+          <ImageProfile image={isAdmin.avatar} />
         </Dropdown.Toggle>
 
         <Dropdown.Menu variant="dark">

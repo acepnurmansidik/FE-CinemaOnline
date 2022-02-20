@@ -12,15 +12,13 @@ export default function NavigationBar() {
   const [loginModalShow, setloginModalShow] = useState(false);
   const [registerModalShow, setregisterModalShow] = useState(false);
   const [isLogin, setIsLogin] = useState(false);
-  const [isAdmin, setIsAdmin] = useState("");
+  const [isAdmin, setIsAdmin] = useState({});
 
   useEffect(() => {
     if (Cookies.get("token")) {
       const user = jwtDecode(atob(Cookies.get("token")));
       setIsLogin(true);
-      setIsAdmin(user.status);
-    } else {
-      console.log("no");
+      setIsAdmin(user);
     }
   }, []);
   // Handle =======================================
@@ -51,10 +49,10 @@ export default function NavigationBar() {
           <Navbar.Collapse className="justify-content-end">
             <Navbar.Text>
               {isLogin === true ? (
-                isAdmin === "admin" ? (
-                  <AdminDropdownMenu />
+                isAdmin.status === "admin" ? (
+                  <AdminDropdownMenu isAdmin={isAdmin} />
                 ) : (
-                  <UserDropdownMenu />
+                  <UserDropdownMenu isAdmin={isAdmin} />
                 )
               ) : (
                 <div className="navbar-buttons">
