@@ -12,7 +12,8 @@ import { Link } from "react-router-dom";
 export default function NavigationBar() {
   const [loginModalShow, setloginModalShow] = useState(false);
   const [registerModalShow, setregisterModalShow] = useState(false);
-  const [isLogin, setIsLogin] = useState(false);
+  const [isLogin, setIsLogin] = useState(true);
+  const [isAdmin, setIsAdmin] = useState(true);
 
   const handleCloseLogin = () => {
     setloginModalShow(false);
@@ -41,82 +42,11 @@ export default function NavigationBar() {
           <Navbar.Collapse className="justify-content-end">
             <Navbar.Text>
               {isLogin === true ? (
-                <div className="navbar-btnLogin">
-                  <Dropdown>
-                    <Dropdown.Toggle id="dropdown-basic">
-                      <img
-                        src="../assets/icons/profile.svg"
-                        width={50}
-                        height={50}
-                        alt=""
-                      />
-                    </Dropdown.Toggle>
-
-                    <Dropdown.Menu variant="dark">
-                      <Dropdown.Item
-                        style={{ display: "flex" }}
-                        href="#/action-2"
-                      >
-                        <img
-                          src="../assets/icons/user 2.svg"
-                          width={25}
-                          height={25}
-                          alt=""
-                        />
-                        <p
-                          style={{
-                            color: "#FFF",
-                            fontWeight: "800",
-                            marginLeft: "5px",
-                          }}
-                        >
-                          Profile
-                        </p>
-                      </Dropdown.Item>
-                      <Dropdown.Item
-                        style={{ display: "flex" }}
-                        href="#/action-2"
-                      >
-                        <img
-                          src="../assets/icons/movies-menu.svg"
-                          width={25}
-                          height={25}
-                          alt=""
-                        />
-                        <p
-                          style={{
-                            color: "#FFF",
-                            fontWeight: "800",
-                            marginLeft: "5px",
-                          }}
-                        >
-                          Profile
-                        </p>
-                      </Dropdown.Item>
-                      <Dropdown.Divider />
-                      <Dropdown.Item
-                        style={{ display: "flex" }}
-                        href="#/action-2"
-                      >
-                        <img
-                          src="../assets/icons/logout 1.svg"
-                          width={25}
-                          height={25}
-                          alt=""
-                        />
-                        <p
-                          style={{
-                            color: "#FFF",
-                            fontWeight: "800",
-                            marginLeft: "5px",
-                          }}
-                        >
-                          Profile
-                        </p>
-                      </Dropdown.Item>
-                    </Dropdown.Menu>
-                  </Dropdown>
-                </div>
+                isAdmin === true ? (
+                  <AdminDropdownMenu />
+                ) : (
+                  <UserDropdownMenu />
+                )
               ) : (
                 <div className="navbar-buttons">
                   <div className="btn-login">
@@ -154,6 +84,145 @@ export default function NavigationBar() {
         </Container>
       </Navbar>
     </>
+  );
+}
+
+function AdminDropdownMenu() {
+  return (
+    <div className="navbar-btnLogin">
+      <Dropdown>
+        <Dropdown.Toggle id="dropdown-basic">
+          <img
+            src="../assets/icons/profile.svg"
+            width={50}
+            height={50}
+            alt=""
+          />
+        </Dropdown.Toggle>
+
+        <Dropdown.Menu variant="dark">
+          <Dropdown.Item style={{ display: "flex" }} href="/transactions">
+            <img src="../assets/icons/list.svg" width={25} height={25} alt="" />
+            <p
+              style={{
+                color: "#FFF",
+                fontWeight: "800",
+                marginLeft: "5px",
+              }}
+            >
+              Transactions
+            </p>
+          </Dropdown.Item>
+          <Dropdown.Item style={{ display: "flex" }} href="/film">
+            <img
+              src="../assets/icons/movies-menu.svg"
+              width={25}
+              height={25}
+              alt=""
+            />
+            <p
+              style={{
+                color: "#FFF",
+                fontWeight: "800",
+                marginLeft: "5px",
+              }}
+            >
+              Add Film
+            </p>
+          </Dropdown.Item>
+          <Dropdown.Divider />
+          <Dropdown.Item style={{ display: "flex" }} href="#/action-2">
+            <img
+              src="../assets/icons/logout 1.svg"
+              width={25}
+              height={25}
+              alt=""
+            />
+            <p
+              style={{
+                color: "#FFF",
+                fontWeight: "800",
+                marginLeft: "5px",
+              }}
+            >
+              Logout
+            </p>
+          </Dropdown.Item>
+        </Dropdown.Menu>
+      </Dropdown>
+    </div>
+  );
+}
+
+function UserDropdownMenu() {
+  return (
+    <div className="navbar-btnLogin">
+      <Dropdown>
+        <Dropdown.Toggle id="dropdown-basic">
+          <img
+            src="../assets/icons/profile.svg"
+            width={50}
+            height={50}
+            alt=""
+          />
+        </Dropdown.Toggle>
+
+        <Dropdown.Menu variant="dark">
+          <Dropdown.Item style={{ display: "flex" }} href="/profile">
+            <img
+              src="../assets/icons/user 2.svg"
+              width={25}
+              height={25}
+              alt=""
+            />
+            <p
+              style={{
+                color: "#FFF",
+                fontWeight: "800",
+                marginLeft: "5px",
+              }}
+            >
+              Profile
+            </p>
+          </Dropdown.Item>
+          <Dropdown.Item style={{ display: "flex" }} href="/my-film">
+            <img
+              src="../assets/icons/movies-menu.svg"
+              width={25}
+              height={25}
+              alt=""
+            />
+            <p
+              style={{
+                color: "#FFF",
+                fontWeight: "800",
+                marginLeft: "5px",
+              }}
+            >
+              My List
+            </p>
+          </Dropdown.Item>
+          <Dropdown.Divider />
+          <Dropdown.Item style={{ display: "flex" }} href="#/action-2">
+            <img
+              src="../assets/icons/logout 1.svg"
+              width={25}
+              height={25}
+              alt=""
+            />
+            <p
+              style={{
+                color: "#FFF",
+                fontWeight: "800",
+                marginLeft: "5px",
+              }}
+            >
+              Logout
+            </p>
+          </Dropdown.Item>
+        </Dropdown.Menu>
+      </Dropdown>
+    </div>
   );
 }
 
