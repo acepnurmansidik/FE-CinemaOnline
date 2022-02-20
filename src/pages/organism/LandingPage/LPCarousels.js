@@ -1,45 +1,60 @@
-import React from "react";
+/* eslint-disable react-hooks/exhaustive-deps */
+import React, { useEffect, useState } from "react";
 import { Button, Carousel, Col, Row } from "react-bootstrap";
+import { getPromoFilms } from "../../../services/film";
+import NumberFormat from "react-number-format";
+import { useNavigate } from "react-router-dom";
 
 export default function LPCarousels() {
+  const router = useNavigate();
+  const [films, setFilms] = useState([]);
+
+  useEffect(async () => {
+    const response = await getPromoFilms();
+    setFilms(response.data.films);
+  }, []);
+
   return (
     <Row className="lp-courosel">
       <Col sm={12}>
         <Carousel className="lp-courosel-content">
-          <Carousel.Item interval={1000}>
-            <img
-              className="d-block w-"
-              src="../assets/img/Rectangle 2.png"
-              height={490}
-              width={1300}
-              alt="First slide"
-            />
-            <Carousel.Caption>
-              <div className="lp-courosel-caption">
-                <h1>
-                  DEAD
-                  <br />
-                  POOL
-                </h1>
+          {films.map((film) => (
+            <Carousel.Item key={film.id} interval={2000}>
+              <img
+                className="d-block w-"
+                src={`${film.thumbnail}`}
+                height={490}
+                width={1300}
+                alt="First slide"
+              />
+              <Carousel.Caption>
+                <div className="lp-courosel-caption">
+                  <h1>{film.title}</h1>
 
-                <p>Action</p>
-                <p>Rp. 9900</p>
-                <p>
-                  Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                  Asperiores repudiandae, excepturi eveniet aliquid rem aliquam?
-                  Temporibus iure sapiente laborum at sequi, perferendis
-                  perspiciatis deleniti expedita? Id doloribus itaque odit modi.
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                  Quibusdam possimus, assumenda odio quisquam ipsam dolores
-                  error! Ipsum, ad fugiat! Tempore itaque deserunt numquam modi
-                  voluptates reprehenderit. Inventore illo sequi neque.
-                </p>
-                <Button className="base-btn" onClick={() => null}>
-                  Buy Now
-                </Button>
-              </div>
-            </Carousel.Caption>
-          </Carousel.Item>
+                  <p>Action</p>
+                  <p>
+                    <NumberFormat
+                      value={`${film.price}`}
+                      className="foo"
+                      displayType={"text"}
+                      thousandSeparator={true}
+                      prefix={"Rp. "}
+                      renderText={(value, props) => (
+                        <div {...props}>{value}</div>
+                      )}
+                    />
+                  </p>
+                  <p>{film.description}</p>
+                  <Button
+                    className="base-btn"
+                    onClick={() => router(`/film/${film.id}`)}
+                  >
+                    Buy Now
+                  </Button>
+                </div>
+              </Carousel.Caption>
+            </Carousel.Item>
+          ))}
         </Carousel>
       </Col>
     </Row>

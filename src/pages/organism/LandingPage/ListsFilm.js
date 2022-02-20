@@ -7,11 +7,10 @@ import { getAllFilms } from "../../../services/film";
 export default function ListsFilm() {
   const [films, setFilms] = useState([]);
 
-  const newLocal = async () => {
+  useEffect(async () => {
     const response = await getAllFilms();
     setFilms(response.data.films);
-  };
-  useEffect(newLocal, []);
+  }, []);
   return (
     <Row className="lp-listfilm">
       <Col sm={12}>
