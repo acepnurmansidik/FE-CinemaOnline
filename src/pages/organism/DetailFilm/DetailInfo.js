@@ -1,10 +1,25 @@
-import React, { useState } from "react";
+/* eslint-disable react-hooks/exhaustive-deps */
+import React, { useEffect, useState } from "react";
 import { Button, Col, Form, Modal } from "react-bootstrap";
 import ReactPlayer from "react-player";
+import { setNotification } from "../../atom/notif";
+import {
+  getTransactionAfterLogin,
+  setTransaction,
+} from "../../../services/transaction";
 import NumberFormat from "react-number-format";
+import { useParams } from "react-router-dom";
 
 export default function DetailInfo({ film, category }) {
+  const params = useParams();
   const [paymentModalShow, setPaymentModalShow] = useState();
+  const [checkTransaction, setCheckTransaction] = useState({});
+
+  useEffect(async () => {
+    const response = await getTransactionAfterLogin(params.id);
+    setCheckTransaction(response.data.data);
+  }, []);
+
   return (
     <Col key={film.id} sm={8} className="df-info">
       <header>
@@ -12,22 +27,64 @@ export default function DetailInfo({ film, category }) {
           <p>{film.title}</p>
         </div>
         <div className="film-btn-container">
-          <Button
-            className="base-btn"
-            onClick={() => setPaymentModalShow(true)}
-            film={film}
-          >
-            Buy Now
-          </Button>
+          {checkTransaction == null ? (
+            <Button
+              className="base-btn"
+              onClick={() => setPaymentModalShow(true)}
+              film={film}
+            >
+              Buy Now
+            </Button>
+          ) : null}
 
           <PaymentShow
             show={paymentModalShow}
             onHide={() => setPaymentModalShow(false)}
             film={film}
+            setPaymentModalShow={setPaymentModalShow}
           />
         </div>
       </header>
-      <div className="df-img-jumbo">
+      <div className="df-img-jumbo" style={{ position: "relative" }}>
+        {checkTransaction == null ? (
+          <div
+            style={{
+              height: "100%",
+              width: "100%",
+              position: "absolute",
+            }}
+            onClick={() =>
+              setNotification(
+                "err",
+                "please buy this film if you want to watch"
+              )
+            }
+          ></div>
+        ) : checkTransaction !== "approved" ? (
+          <div
+            style={{
+              height: "100%",
+              width: "100%",
+              position: "absolute",
+            }}
+            onClick={() =>
+              setNotification(
+                "err",
+                "thank you for buying this film, please wait 1x24 hours because your transaction is in process"
+              )
+            }
+          ></div>
+        ) : (
+          <div
+            style={{
+              height: "100%",
+              width: "100%",
+              position: "absolute",
+              display: "none",
+            }}
+          ></div>
+        )}
+
         <ReactPlayer
           url={`${film.filmUrl}`}
           light={true}
@@ -60,11 +117,37 @@ export default function DetailInfo({ film, category }) {
   );
 }
 
-function PaymentShow({ film, ...props }) {
+function PaymentShow({ film, setPaymentModalShow, ...props }) {
   const [image, setImage] = useState("");
   const [imagePreview, setImagePreview] = useState("");
   const [form, setForm] = useState({});
 
+  // Handle ================================
+  const handleoOnChange = (e) => {
+    setForm({
+      ...form,
+      [e.target.name]: e.target.value,
+    });
+  };
+
+  const handleOnSubmit = async (e) => {
+    e.preventDefault();
+    let data = new FormData();
+
+    data.append("transferProof", image);
+    data.append("filmId", film.id);
+    data.append("accountNumber", form.accountNumber);
+
+    const response = await setTransaction(data);
+    console.log(response);
+    if (response.status === "success") {
+      setPaymentModalShow(false);
+      setNotification(
+        response.status,
+        "thank you for buying this film, please wait 1x24 hours because your transaction is in process"
+      );
+    }
+  };
   return (
     <Modal
       {...props}
@@ -99,22 +182,14 @@ function PaymentShow({ film, ...props }) {
           </div>
         </Form.Group>
 
-        <Form onSubmit={null}>
-          <Form.Group className="mb-3" controlId="formBasicAccountNumber">
-            <Form.Control
-              type="hidden"
-              name="filmId"
-              value={film.id}
-              onChange={null}
-            />
-          </Form.Group>
+        <Form onSubmit={handleOnSubmit}>
           <Form.Group className="mb-3" controlId="formBasicAccountNumber">
             <Form.Control
               type="text"
               className="form-control"
               placeholder="Input Your Account Number"
               name="accountNumber"
-              onChange={null}
+              onChange={handleoOnChange}
             />
           </Form.Group>
           {imagePreview ? (
