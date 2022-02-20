@@ -4,7 +4,6 @@ import ReactPlayer from "react-player";
 
 export default function DetailInfo() {
   const [paymentModalShow, setPaymentModalShow] = useState();
-  const [play, setPlay] = useState(false);
   const [isLogin, setIsLogin] = useState(false);
   return (
     <Col sm={8} className="df-info">
