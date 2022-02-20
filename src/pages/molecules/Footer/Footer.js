@@ -6,7 +6,9 @@ export default function Footer() {
   return (
     <Container className="footer-container">
       <div className="footer-brand">
-        <img src="../assets/img/Icon.svg" alt="" />
+        <Link to={"/"}>
+          <img src="../assets/img/Icon.svg" alt="" />
+        </Link>
         <p>
           JL Raya Sasak Beusi No.10, Sindangsuka, Kec. Cibatu, Kabupaten Garut,
           Jawa Barat 44185

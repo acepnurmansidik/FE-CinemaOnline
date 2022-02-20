@@ -5,6 +5,7 @@ import App from "./App";
 import "./style/root.css";
 import "./style/navbar.css";
 import "./style/footer.css";
+import "./style/404-page.css";
 import "./style/landing-page.css";
 import "./style/detail-film.css";
 import "./style/list-film.css";
