@@ -10,3 +10,12 @@ export const getAllFilms = () => {
 
   return requestAPI({ url, method: "GET", headers });
 };
+
+export const getFilmSpecific = (id) => {
+  const url = `${ROOT_API}/film/${id}`;
+  let headers = {
+    "Content-type": "application/json",
+  };
+
+  return requestAPI({ url, method: "GET", headers });
+};

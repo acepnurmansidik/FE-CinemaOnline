@@ -1,20 +1,21 @@
 import React, { useState } from "react";
 import { Button, Col, Form, Modal } from "react-bootstrap";
 import ReactPlayer from "react-player";
+import NumberFormat from "react-number-format";
 
-export default function DetailInfo() {
+export default function DetailInfo({ film, category }) {
   const [paymentModalShow, setPaymentModalShow] = useState();
-  const [isLogin, setIsLogin] = useState(false);
   return (
-    <Col sm={8} className="df-info">
+    <Col key={film.id} sm={8} className="df-info">
       <header>
         <div className="df-title-film">
-          <p>Tom & Jerry</p>
+          <p>{film.title}</p>
         </div>
         <div className="film-btn-container">
           <Button
             className="base-btn"
             onClick={() => setPaymentModalShow(true)}
+            film={film}
           >
             Buy Now
           </Button>
@@ -22,68 +23,48 @@ export default function DetailInfo() {
           <PaymentShow
             show={paymentModalShow}
             onHide={() => setPaymentModalShow(false)}
+            film={film}
           />
         </div>
       </header>
       <div className="df-img-jumbo">
         <ReactPlayer
-          url={`https://www.youtube.com/watch?v=7sDY4m8KNLc`}
+          url={`${film.filmUrl}`}
           light={true}
           controls={true}
           pip={false}
           stopOnUnmount={false}
           width="100%"
           height="100%"
-          onDisablePIP={false}
         />
       </div>
       <div className="df-synopsis-film">
         <div className="synopsis-info">
-          <p>Family</p>
-          <p>Rp. 999999</p>
+          <p>{category}</p>
+          <p>
+            <NumberFormat
+              value={`${film.price}`}
+              className="foo"
+              displayType={"text"}
+              thousandSeparator={true}
+              prefix={"Rp. "}
+              renderText={(value, props) => <div {...props}>{value}</div>}
+            />
+          </p>
         </div>
         <div className="text-synopsis">
-          <p>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempora
-            inventore at vero rem! Eveniet quas voluptates, ducimus labore enim
-            sit earum est tempora numquam? Excepturi vero ea commodi incidunt
-            fugit. Lorem ipsum, dolor sit amet consectetur adipisicing elit.
-            Labore itaque autem voluptatem quaerat eos architecto omnis vero,
-            fuga neque temporibus, corporis necessitatibus tenetur dignissimos
-            totam ullam libero quod illo animi? Lorem, ipsum dolor sit amet
-            consectetur adipisicing elit. Et voluptate perspiciatis modi illo,
-            officia hic temporibus id eos tempore deserunt eius cumque
-            reprehenderit repellat accusantium in. Animi esse harum aut? Lorem
-            ipsum dolor sit amet consectetur adipisicing elit. Tempora inventore
-            at vero rem! Eveniet quas voluptates, ducimus labore enim sit earum
-            est tempora numquam? Excepturi vero ea commodi incidunt fugit. Lorem
-            ipsum, dolor sit amet consectetur adipisicing elit. Labore itaque
-            autem voluptatem quaerat eos architecto omnis vero, fuga neque
-            temporibus, corporis necessitatibus tenetur dignissimos totam ullam
-            libero quod illo animi? Lorem, ipsum dolor sit amet consectetur
-            adipisicing elit. Et voluptate perspiciatis modi illo, officia hic
-            temporibus id eos tempore deserunt eius cumque reprehenderit
-            repellat accusantium in. Animi esse harum aut? Lorem ipsum dolor sit
-            amet consectetur adipisicing elit. Tempora inventore at vero rem!
-            Eveniet quas voluptates, ducimus labore enim sit earum est tempora
-            numquam? Excepturi vero ea commodi incidunt fugit. Lorem ipsum,
-            dolor sit amet consectetur adipisicing elit. Labore itaque autem
-            voluptatem quaerat eos architecto omnis vero, fuga neque temporibus,
-            corporis necessitatibus tenetur dignissimos totam ullam libero quod
-            illo animi? Lorem, ipsum dolor sit amet consectetur adipisicing
-            elit. Et voluptate perspiciatis modi illo, officia hic temporibus id
-            eos tempore deserunt eius cumque reprehenderit repellat accusantium
-            in. Animi esse harum aut?
-          </p>
+          <p>{film.description}</p>
         </div>
       </div>
     </Col>
   );
 }
 
-function PaymentShow(props) {
+function PaymentShow({ film, ...props }) {
   const [image, setImage] = useState("");
   const [imagePreview, setImagePreview] = useState("");
+  const [form, setForm] = useState({});
+
   return (
     <Modal
       {...props}
@@ -101,14 +82,32 @@ function PaymentShow(props) {
         </Modal.Title>
         <Form.Group className="mb-2 mt-3" controlId="formBasicPassword">
           <div className="info-attachment">
-            <p className="title-attachment">Tom & Jerry</p>
+            <p className="title-attachment">{film.title}</p>
             <p>
-              Rp. <p className="text-base-color">9999</p>
+              Rp.{" "}
+              <p className="text-base-color">
+                <NumberFormat
+                  value={`${film.price}`}
+                  className="foo"
+                  displayType={"text"}
+                  thousandSeparator={true}
+                  prefix={""}
+                  renderText={(value, props) => <div {...props}>{value}</div>}
+                />
+              </p>
             </p>
           </div>
         </Form.Group>
 
         <Form onSubmit={null}>
+          <Form.Group className="mb-3" controlId="formBasicAccountNumber">
+            <Form.Control
+              type="hidden"
+              name="filmId"
+              value={film.id}
+              onChange={null}
+            />
+          </Form.Group>
           <Form.Group className="mb-3" controlId="formBasicAccountNumber">
             <Form.Control
               type="text"
