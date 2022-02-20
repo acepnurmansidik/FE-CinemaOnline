@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { setNotification } from "../../atom/notif";
 import {
   Button,
   Modal,
@@ -8,11 +9,12 @@ import {
   Dropdown,
 } from "react-bootstrap";
 import { Link } from "react-router-dom";
+import { setRegister } from "../../../services/auth";
 
 export default function NavigationBar() {
   const [loginModalShow, setloginModalShow] = useState(false);
   const [registerModalShow, setregisterModalShow] = useState(false);
-  const [isLogin, setIsLogin] = useState(true);
+  const [isLogin, setIsLogin] = useState(false);
   const [isAdmin, setIsAdmin] = useState(true);
 
   const handleCloseLogin = () => {
@@ -75,6 +77,7 @@ export default function NavigationBar() {
                       show={registerModalShow}
                       onHide={() => setregisterModalShow(false)}
                       handleCloseRegister={handleCloseRegister}
+                      setregisterModalShow={setregisterModalShow}
                     />
                   </div>
                 </div>
@@ -227,6 +230,17 @@ function UserDropdownMenu() {
 }
 
 function LoginModalShow({ handleCloseLogin, ...props }) {
+  const [form, setForm] = useState();
+
+  // Handle ==========================================
+  const handelOnChange = (e) => {
+    setForm({
+      ...form,
+      [e.target.name]: e.target.value,
+    });
+
+    console.log(form);
+  };
   return (
     <Modal
       {...props}
@@ -277,7 +291,37 @@ function LoginModalShow({ handleCloseLogin, ...props }) {
   );
 }
 
-function RegisterModalShow({ handleCloseRegister, ...props }) {
+function RegisterModalShow({
+  handleCloseRegister,
+  setregisterModalShow,
+  ...props
+}) {
+  const [form, setForm] = useState({
+    username: "",
+    fullname: "",
+    email: "",
+    password: "",
+  });
+
+  // Handle ==========================================
+  const handelOnChange = (e) => {
+    setForm({
+      ...form,
+      [e.target.name]: e.target.value,
+    });
+  };
+
+  const handleOnSubmit = async (e) => {
+    e.preventDefault();
+
+    const response = await setRegister(form);
+    if (response.status === "success") {
+      setregisterModalShow(false);
+      setNotification(response.status, "Account registered successfully");
+    } else {
+      console.log("FAILED");
+    }
+  };
   return (
     <Modal
       {...props}
@@ -289,14 +333,14 @@ function RegisterModalShow({ handleCloseRegister, ...props }) {
         <Modal.Title id="contained-modal-title-vcenter" className="mb-3">
           Register
         </Modal.Title>
-        <Form onSubmit={null}>
+        <Form onSubmit={handleOnSubmit}>
           <Form.Group className="mb-3" controlId="formBasicFullname">
             <Form.Control
               type="text"
               className="form-control"
               placeholder="Fullname"
               name="fullname"
-              onChange={null}
+              onChange={handelOnChange}
             />
           </Form.Group>
 
@@ -306,7 +350,7 @@ function RegisterModalShow({ handleCloseRegister, ...props }) {
               className="form-control"
               placeholder="Username"
               name="username"
-              onChange={null}
+              onChange={handelOnChange}
             />
           </Form.Group>
 
@@ -316,7 +360,7 @@ function RegisterModalShow({ handleCloseRegister, ...props }) {
               className="form-control"
               placeholder="Email"
               name="email"
-              onChange={null}
+              onChange={handelOnChange}
             />
           </Form.Group>
 
@@ -326,7 +370,7 @@ function RegisterModalShow({ handleCloseRegister, ...props }) {
               className="form-control"
               placeholder="Password (min 6 character))"
               name="password"
-              onChange={null}
+              onChange={handelOnChange}
             />
           </Form.Group>
 
