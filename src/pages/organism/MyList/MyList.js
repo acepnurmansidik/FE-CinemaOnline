@@ -5,14 +5,27 @@ import { Link } from "react-router-dom";
 import { getMyListFilm } from "../../../services/film";
 import Footer from "../../molecules/Footer/Footer";
 import NavigationBar from "../../molecules/NavigationBar/NavigationBar";
+import { useNavigate } from "react-router-dom";
+import Cookies from "js-cookie";
+import jwtDecode from "jwt-decode";
 
 export default function MyList() {
+  const router = useNavigate();
   const [films, setFilms] = useState([]);
 
   useEffect(async () => {
     const response = await getMyListFilm();
     setFilms(response.data.films);
   }, []);
+
+  useEffect(() => {
+    if (
+      !Cookies.get("token") ||
+      jwtDecode(atob(Cookies.get("token"))).status !== "costumer"
+    ) {
+      router("/");
+    }
+  }, [router]);
   return (
     <Container>
       <NavigationBar />
