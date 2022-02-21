@@ -39,3 +39,16 @@
   content: "Attach Thumbnail";
   width: 9.6rem;
 }
+
+.btn-select {
+  cursor: pointer;
+  background-color: rgba(180, 180, 180, 0.2);
+  border: 2px solid rgb(161, 161, 161);
+  outline: none;
+  color: #fff;
+  height: 50px;
+  justify-content: center;
+  margin-top: 0.4rem;
+  margin-bottom: 1.5rem;
+  line-height: 50px;
+}

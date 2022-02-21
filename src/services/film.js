@@ -41,3 +41,19 @@ export const getMyListFilm = () => {
 
   return requestAPI({ url, method: "GET", token: true, headers });
 };
+
+// POST new film
+export const setNewFilm = (data) => {
+  const url = `${ROOT_API}/film`;
+  let headers = {
+    "Content-type": "multipart/form-data",
+  };
+
+  return requestAPI({
+    url,
+    method: "POST",
+    data,
+    headers,
+    token: true,
+  });
+};

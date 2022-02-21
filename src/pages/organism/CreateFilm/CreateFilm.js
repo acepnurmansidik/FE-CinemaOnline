@@ -1,13 +1,43 @@
-import React, { useState } from "react";
-import { Button, Container, Form } from "react-bootstrap";
+/* eslint-disable react-hooks/exhaustive-deps */
+import Cookies from "js-cookie";
+import jwtDecode from "jwt-decode";
+import React, { useEffect, useState } from "react";
+import {
+  Button,
+  Container,
+  Dropdown,
+  DropdownButton,
+  Form,
+} from "react-bootstrap";
+import { useNavigate } from "react-router-dom";
+import { setNewFilm } from "../../../services/film";
+import { getAllCategories } from "../../../services/category";
+import { setNotification } from "../../atom/notif";
 import NavigationBar from "../../molecules/NavigationBar/NavigationBar";
 
 export default function CreateFilm() {
+  const router = useNavigate();
   const [image, setImage] = useState("");
   const [imagePreview, setImagePreview] = useState("");
-  const [form, setForm] = useState({
-    caption: "",
-  });
+  const [categorys, setCategorys] = useState([]);
+  const [form, setForm] = useState({});
+
+  // validator
+  useEffect(() => {
+    if (
+      !Cookies.get("token") ||
+      jwtDecode(atob(Cookies.get("token"))).status !== "admin"
+    ) {
+      router("/");
+    }
+  }, [router]);
+
+  useEffect(async () => {
+    const response = await getAllCategories();
+    setCategorys(response.data.categories);
+  }, []);
+
+  // Handle ===========================================
 
   const handleOnChange = (e) => {
     setForm({
@@ -19,8 +49,20 @@ export default function CreateFilm() {
   const handleOnSubmit = async (e) => {
     e.preventDefault();
     const data = new FormData();
-    data.append("image", image);
-    data.append("caption", form.caption);
+    data.append("title", form.title);
+    data.append("price", form.price);
+    data.append("filmUrl", form.filmUrl);
+    data.append("description", form.description);
+    data.append("thumbnail", image);
+    data.append("categoryId", form.categoryId);
+
+    const response = await setNewFilm(data);
+    if (response.status === "success") {
+      setNotification("success", "Yeay, has been posting");
+      document.getElementById("create-course-form").reset();
+    } else {
+      setNotification("err", "Please upload image or video");
+    }
   };
 
   return (
@@ -30,7 +72,7 @@ export default function CreateFilm() {
         <p>Add Film</p>
       </div>
       <div className="form-input-film">
-        <Form onSubmit={handleOnSubmit}>
+        <Form onSubmit={handleOnSubmit} id="create-course-form">
           <div className="create-film-inputGroup">
             <Form.Group className="mb-3 title-input" controlId="formBasicTitle">
               <Form.Control
@@ -58,18 +100,26 @@ export default function CreateFilm() {
           </div>
 
           <Form.Group className="mb-3" controlId="formBasicCategory">
-            <Form.Control
-              type="Category"
-              className="form-control"
-              placeholder="Category"
-              name="category"
-              onChange={handleOnChange}
-            />
+            <DropdownButton
+              id="dropdown-basic-button"
+              title="-- Select Category --"
+              className="btn-select"
+            >
+              {categorys.map((category) => (
+                <Dropdown.Item
+                  style={{ color: "rgba(180, 180, 180, 0.8)" }}
+                  key={category.id}
+                  onClick={() => setForm({ ...form, categoryId: category.id })}
+                >
+                  {category.name}
+                </Dropdown.Item>
+              ))}
+            </DropdownButton>
           </Form.Group>
 
           <Form.Group className="mb-3" controlId="formBasicPrice">
             <Form.Control
-              type="Price"
+              type="number"
               className="form-control"
               placeholder="Price"
               name="price"
