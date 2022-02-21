@@ -44,7 +44,10 @@ export default function AdminDropdownMenu({ isAdmin }) {
           <Dropdown.Divider />
           <Dropdown.Item
             style={{ display: "flex" }}
-            onClick={() => Cookies.remove("token")}
+            onClick={() => {
+              Cookies.remove("token");
+              window.location.reload();
+            }}
           >
             <img
               src="../assets/icons/logout 1.svg"
