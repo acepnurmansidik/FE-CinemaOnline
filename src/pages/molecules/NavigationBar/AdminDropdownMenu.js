@@ -7,7 +7,7 @@ export default function AdminDropdownMenu({ isAdmin }) {
     <div className="navbar-btnLogin">
       <Dropdown>
         <Dropdown.Toggle id="dropdown-basic">
-          <ImageProfile image={isAdmin.avatar} />
+          <ImageProfile image={isAdmin.avatar} ht={50} wt={50} BoRa={true} />
         </Dropdown.Toggle>
 
         <Dropdown.Menu variant="dark">
