@@ -2,11 +2,12 @@
 import Cookies from "js-cookie";
 import jwtDecode from "jwt-decode";
 import React, { useEffect, useState } from "react";
-import { Container, Dropdown, Table } from "react-bootstrap";
+import { Container, Dropdown, DropdownButton, Table } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import {
   getTransaction,
   updateTransaction,
+  getTransactionSpecific,
 } from "../../../services/transaction";
 import NavigationBar from "../../molecules/NavigationBar/NavigationBar";
 
@@ -37,6 +38,44 @@ export default function Transactions() {
         <p>Incoming Transaction</p>
       </div>
       <div className="table-transactions">
+        <DropdownButton id="dropdown-basic-buttonTRX" title="Select Filter">
+          <Dropdown.Item
+            style={{ color: "#999" }}
+            onClick={async () => {
+              const response = await getTransaction();
+              setTrxs(response.data.data);
+            }}
+          >
+            All
+          </Dropdown.Item>
+          <Dropdown.Item
+            style={{ color: "#999" }}
+            onClick={async () => {
+              const response = await getTransactionSpecific("pending");
+              setTrxs(response.data.data);
+            }}
+          >
+            Pending
+          </Dropdown.Item>
+          <Dropdown.Item
+            style={{ color: "#999" }}
+            onClick={async () => {
+              const response = await getTransactionSpecific("approved");
+              setTrxs(response.data.data);
+            }}
+          >
+            Approved
+          </Dropdown.Item>
+          <Dropdown.Item
+            style={{ color: "#999" }}
+            onClick={async () => {
+              const response = await getTransactionSpecific("cancel");
+              setTrxs(response.data.data);
+            }}
+          >
+            Cancel
+          </Dropdown.Item>
+        </DropdownButton>
         <Table striped bordered hover variant="dark" responsive="sm">
           <thead>
             <tr>
@@ -57,7 +96,13 @@ export default function Transactions() {
                 <td>{trx.transferProof}</td>
                 <td>{trx.films.title}</td>
                 <td>{trx.accountNumber}</td>
-                <td>{trx.status}</td>
+                {trx.status === "pending" ? (
+                  <td style={{ color: "#F7941E" }}>{trx.status}</td>
+                ) : trx.status === "approved" ? (
+                  <td style={{ color: "#0ACF83" }}>{trx.status}</td>
+                ) : (
+                  <td style={{ color: "#FF0742" }}>{trx.status}</td>
+                )}
                 <td>
                   <Dropdown>
                     <Dropdown.Toggle>

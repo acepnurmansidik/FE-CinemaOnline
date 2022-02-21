@@ -32,6 +32,16 @@ export const getTransaction = () => {
   return requestAPI({ url, method: "GET", token: true, headers });
 };
 
+// GET transactions with query
+export const getTransactionSpecific = (status) => {
+  const url = `${ROOT_API}/transactions?status=${status}`;
+  let headers = {
+    "Content-type": "application/json",
+  };
+
+  return requestAPI({ url, method: "GET", token: true, headers });
+};
+
 // PUT/PATCH transactions
 export const updateTransaction = (id, status) => {
   const url = `${ROOT_API}/transactions/${id}?status=${status}`;
