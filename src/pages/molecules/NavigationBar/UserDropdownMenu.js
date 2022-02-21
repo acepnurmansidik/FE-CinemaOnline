@@ -1,5 +1,6 @@
 import React from "react";
 import { Dropdown } from "react-bootstrap";
+import Cookies from "js-cookie";
 
 export default function UserDropdownMenu() {
   return (
@@ -50,7 +51,10 @@ export default function UserDropdownMenu() {
             </p>
           </Dropdown.Item>
           <Dropdown.Divider />
-          <Dropdown.Item style={{ display: "flex" }} href="#/action-2">
+          <Dropdown.Item
+            style={{ display: "flex" }}
+            onClick={() => Cookies.remove("token")}
+          >
             <img
               src="../assets/icons/logout 1.svg"
               width={25}

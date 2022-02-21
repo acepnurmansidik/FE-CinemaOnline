@@ -1,6 +1,7 @@
 import React from "react";
 import { Dropdown } from "react-bootstrap";
 import ImageProfile from "../../atom/ImageProfile/ImageProfile";
+import Cookies from "js-cookie";
 
 export default function AdminDropdownMenu({ isAdmin }) {
   return (
@@ -41,7 +42,10 @@ export default function AdminDropdownMenu({ isAdmin }) {
             </p>
           </Dropdown.Item>
           <Dropdown.Divider />
-          <Dropdown.Item style={{ display: "flex" }} href="#/action-2">
+          <Dropdown.Item
+            style={{ display: "flex" }}
+            onClick={() => Cookies.remove("token")}
+          >
             <img
               src="../assets/icons/logout 1.svg"
               width={25}

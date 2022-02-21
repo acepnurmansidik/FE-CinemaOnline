@@ -60,7 +60,7 @@ export default function DetailInfo({ film, category }) {
               )
             }
           ></div>
-        ) : checkTransaction !== "approved" ? (
+        ) : checkTransaction === "approved" ? (
           <div
             style={{
               height: "100%",
