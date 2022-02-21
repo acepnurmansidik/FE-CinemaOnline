@@ -31,3 +31,13 @@ export const getFilmSpecific = (id) => {
 
   return requestAPI({ url, method: "GET", headers });
 };
+
+// GET my list film
+export const getMyListFilm = () => {
+  const url = `${ROOT_API}/my-film`;
+  let headers = {
+    "Content-type": "application/json",
+  };
+
+  return requestAPI({ url, method: "GET", token: true, headers });
+};
