@@ -57,3 +57,34 @@ export const setNewFilm = (data) => {
     token: true,
   });
 };
+
+// UPDATE new film
+export const setUpdateFilm = (data) => {
+  const url = `${ROOT_API}/film`;
+  let headers = {
+    "Content-type": "multipart/form-data",
+  };
+
+  return requestAPI({
+    url,
+    method: "PATCH",
+    data,
+    headers,
+    token: true,
+  });
+};
+
+// DELETE film
+export const setDeleteFilm = (id) => {
+  const url = `${ROOT_API}/film/${id}`;
+  let headers = {
+    "Content-type": "multipart/form-data",
+  };
+
+  return requestAPI({
+    url,
+    method: "DELETE",
+    headers,
+    token: true,
+  });
+};
