@@ -30,10 +30,10 @@ export default function DetailInfo({ film, category }) {
           <p>{film.title}</p>
         </div>
         <div className="film-btn-container">
-          {checkTransaction || !Cookies.get("token") == null ? (
+          {checkTransaction == null || !Cookies.get("token") ? (
             <Button
               className="base-btn"
-              onClick={() => setPaymentModalShow(true)}
+              onClick={() => setNotification("err", "Login required!")}
               film={film}
             >
               Buy Now
@@ -57,14 +57,17 @@ export default function DetailInfo({ film, category }) {
         </div>
       </header>
       <div className="df-img-jumbo" style={{ position: "relative" }}>
-        {checkTransaction || !Cookies.get("token") == null ? (
+        {checkTransaction == null || !Cookies.get("token") ? (
           <div
             style={{
               height: "100%",
               width: "100%",
               position: "absolute",
             }}
-            onClick={() => setForbidenModal(true)}
+            onClick={() => {
+              setForbidenModal(true);
+              setNotification("err", "Login required!");
+            }}
           ></div>
         ) : checkTransaction === "approved" ? (
           <div
