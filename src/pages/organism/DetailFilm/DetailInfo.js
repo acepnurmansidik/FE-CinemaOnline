@@ -9,10 +9,13 @@ import {
 } from "../../../services/transaction";
 import NumberFormat from "react-number-format";
 import { useParams } from "react-router-dom";
+import Cookies from "js-cookie";
 
 export default function DetailInfo({ film, category }) {
   const params = useParams();
-  const [paymentModalShow, setPaymentModalShow] = useState();
+  const [paymentModalShow, setPaymentModalShow] = useState(false);
+  const [notifModalShow, setNotifModalShow] = useState(false);
+  const [forbidenModal, setForbidenModal] = useState(false);
   const [checkTransaction, setCheckTransaction] = useState({});
 
   useEffect(async () => {
@@ -27,7 +30,7 @@ export default function DetailInfo({ film, category }) {
           <p>{film.title}</p>
         </div>
         <div className="film-btn-container">
-          {checkTransaction == null ? (
+          {checkTransaction || !Cookies.get("token") == null ? (
             <Button
               className="base-btn"
               onClick={() => setPaymentModalShow(true)}
@@ -43,22 +46,25 @@ export default function DetailInfo({ film, category }) {
             film={film}
             setPaymentModalShow={setPaymentModalShow}
           />
+          <NotifModalShow
+            show={notifModalShow}
+            onHide={() => setNotifModalShow(false)}
+          />
+          <NotifModalShowForbiden
+            show={forbidenModal}
+            onHide={() => setForbidenModal(false)}
+          />
         </div>
       </header>
       <div className="df-img-jumbo" style={{ position: "relative" }}>
-        {checkTransaction == null ? (
+        {checkTransaction || !Cookies.get("token") == null ? (
           <div
             style={{
               height: "100%",
               width: "100%",
               position: "absolute",
             }}
-            onClick={() =>
-              setNotification(
-                "err",
-                "please buy this film if you want to watch"
-              )
-            }
+            onClick={() => setForbidenModal(true)}
           ></div>
         ) : checkTransaction === "approved" ? (
           <div
@@ -67,12 +73,7 @@ export default function DetailInfo({ film, category }) {
               width: "100%",
               position: "absolute",
             }}
-            onClick={() =>
-              setNotification(
-                "err",
-                "thank you for buying this film, please wait 1x24 hours because your transaction is in process"
-              )
-            }
+            onClick={() => setNotifModalShow(true)}
           ></div>
         ) : (
           <div
@@ -218,6 +219,49 @@ function PaymentShow({ film, setPaymentModalShow, ...props }) {
             Submit
           </Button>
         </Form>
+      </Modal.Body>
+    </Modal>
+  );
+}
+
+function NotifModalShow({ message, ...props }) {
+  return (
+    <Modal
+      {...props}
+      size="lg"
+      aria-labelledby="contained-modal-title-vcenter"
+      centered
+    >
+      <Modal.Body style={{ backgroundColor: "#FFF", borderRadius: 5 }}>
+        <Modal.Title className="mb-3">
+          <Form.Text className="">
+            <div style={{ color: "#469F74" }}>
+              thank you for buying this film, please wait 1x24 hours because
+              your transaction is in process
+            </div>
+          </Form.Text>
+        </Modal.Title>
+      </Modal.Body>
+    </Modal>
+  );
+}
+
+function NotifModalShowForbiden({ message, ...props }) {
+  return (
+    <Modal
+      {...props}
+      size="lg"
+      aria-labelledby="contained-modal-title-vcenter"
+      centered
+    >
+      <Modal.Body style={{ backgroundColor: "#FFF", borderRadius: 5 }}>
+        <Modal.Title className="mb-3">
+          <Form.Text className="">
+            <div style={{ color: "#469F74" }}>
+              please buy this film if you want to watch
+            </div>
+          </Form.Text>
+        </Modal.Title>
       </Modal.Body>
     </Modal>
   );
