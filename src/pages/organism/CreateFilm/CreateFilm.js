@@ -60,6 +60,7 @@ export default function CreateFilm() {
     if (response.status === "success") {
       setNotification("success", "Yeay, has been posting");
       document.getElementById("create-course-form").reset();
+      setImagePreview("");
     } else {
       setNotification("err", "Please upload image or video");
     }
@@ -107,7 +108,10 @@ export default function CreateFilm() {
             >
               {categorys.map((category) => (
                 <Dropdown.Item
-                  style={{ color: "rgba(180, 180, 180, 0.8)" }}
+                  style={{
+                    color: "rgba(180, 180, 180, 0.8)",
+                  }}
+                  height={50}
                   key={category.id}
                   onClick={() => setForm({ ...form, categoryId: category.id })}
                 >
@@ -143,7 +147,7 @@ export default function CreateFilm() {
                 className="form-control textarea"
                 name="description"
                 id="bio"
-                placeholder="caption"
+                placeholder="description"
                 onChange={handleOnChange}
               ></textarea>
             </Form.Group>

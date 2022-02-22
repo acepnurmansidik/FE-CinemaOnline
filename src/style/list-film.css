@@ -16,3 +16,25 @@
   height: 17em;
   margin: 1em 1.15em;
 }
+
+.lp-list-film {
+  width: 100%;
+  overflow-x: scroll;
+}
+
+.lp-list-film img {
+  height: 200px;
+  width: 150px;
+  margin: 0 0.5em;
+}
+.lp-list-film::-webkit-scrollbar {
+  width: px;
+}
+.lp-list-film::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: rgba(141, 141, 141, 0.1);
+}

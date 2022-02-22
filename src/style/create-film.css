@@ -52,3 +52,8 @@
   margin-bottom: 1.5rem;
   line-height: 50px;
 }
+
+.form-input-film .dropdown-menu {
+  height: 15em;
+  overflow-y: scroll;
+}
