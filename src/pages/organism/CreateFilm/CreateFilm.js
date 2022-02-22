@@ -2,13 +2,7 @@
 import Cookies from "js-cookie";
 import jwtDecode from "jwt-decode";
 import React, { useEffect, useState } from "react";
-import {
-  Button,
-  Container,
-  Dropdown,
-  DropdownButton,
-  Form,
-} from "react-bootstrap";
+import { Button, Container, Form } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import { setNewFilm } from "../../../services/film";
 import { getAllCategories } from "../../../services/category";
@@ -48,13 +42,16 @@ export default function CreateFilm() {
 
   const handleOnSubmit = async (e) => {
     e.preventDefault();
+
     const data = new FormData();
     data.append("title", form.title);
     data.append("price", form.price);
     data.append("filmUrl", form.filmUrl);
     data.append("description", form.description);
     data.append("thumbnail", image);
-    data.append("categoryId", form.categoryId);
+    form.category
+      ? data.append("categoryId", form.categoryId)
+      : data.append("categoryId", categorys[0].id);
 
     const response = await setNewFilm(data);
     if (response.status === "success") {
@@ -101,24 +98,11 @@ export default function CreateFilm() {
           </div>
 
           <Form.Group className="mb-3" controlId="formBasicCategory">
-            <DropdownButton
-              id="dropdown-basic-button"
-              title="-- Select Category --"
-              className="btn-select"
-            >
+            <Form.Select onChange={handleOnChange} name="categoryId" size="lg">
               {categorys.map((category) => (
-                <Dropdown.Item
-                  style={{
-                    color: "rgba(180, 180, 180, 0.8)",
-                  }}
-                  height={50}
-                  key={category.id}
-                  onClick={() => setForm({ ...form, categoryId: category.id })}
-                >
-                  {category.name}
-                </Dropdown.Item>
+                <option value={category.id}>{category.name}</option>
               ))}
-            </DropdownButton>
+            </Form.Select>
           </Form.Group>
 
           <Form.Group className="mb-3" controlId="formBasicPrice">

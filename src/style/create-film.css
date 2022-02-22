@@ -53,6 +53,14 @@
   line-height: 50px;
 }
 
+.form-select-lg {
+  cursor: pointer;
+  background-color: rgba(180, 180, 180, 0.2);
+  border: 2px solid rgb(161, 161, 161);
+  outline: none;
+  color: #fff;
+}
+
 .form-input-film .dropdown-menu {
   height: 15em;
   overflow-y: scroll;
