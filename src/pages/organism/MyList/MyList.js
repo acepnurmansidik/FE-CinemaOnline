@@ -27,7 +27,7 @@ export default function MyList() {
     }
   }, [router]);
   return (
-    <Container>
+    <Container className="container-my-listFilm">
       <NavigationBar />
       <Row className="list-title-container">
         <p>My List Film</p>

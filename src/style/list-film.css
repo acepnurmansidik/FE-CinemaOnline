@@ -1,6 +1,6 @@
 /*  */
 .list-title-container {
-  margin: 3em 0 2em 3.5em;
+  margin: 0 0 2em 3.5em;
 }
 .list-title-container p {
   font-size: 2em;
@@ -37,4 +37,11 @@
 /* Handle */
 ::-webkit-scrollbar-thumb {
   background: rgba(141, 141, 141, 0.1);
+}
+
+.container-my-listFilm {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  justify-content: space-between;
 }
