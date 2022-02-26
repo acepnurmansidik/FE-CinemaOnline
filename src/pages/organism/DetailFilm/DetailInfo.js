@@ -9,7 +9,7 @@ import {
 } from "../../../services/transaction";
 import NumberFormat from "react-number-format";
 import { useParams } from "react-router-dom";
-import Cookies from "js-cookie";
+
 
 export default function DetailInfo({ film, category }) {
   const params = useParams();
@@ -30,15 +30,15 @@ export default function DetailInfo({ film, category }) {
           <p>{film.title}</p>
         </div>
         <div className="film-btn-container">
-          {checkTransaction == null || !Cookies.get("token") ? (
+        {!checkTransaction ? (
             <Button
               className="base-btn"
-              onClick={() => setNotification("err", "Login required!")}
+              onClick={() => setPaymentModalShow(true)}
               film={film}
             >
               Buy Now
             </Button>
-          ) : null}
+          ) :null }
 
           <PaymentShow
             show={paymentModalShow}
@@ -57,7 +57,7 @@ export default function DetailInfo({ film, category }) {
         </div>
       </header>
       <div className="df-img-jumbo" style={{ position: "relative" }}>
-        {checkTransaction == null || !Cookies.get("token") ? (
+        {!checkTransaction ? (
           <div
             style={{
               height: "100%",
@@ -66,7 +66,6 @@ export default function DetailInfo({ film, category }) {
             }}
             onClick={() => {
               setForbidenModal(true);
-              setNotification("err", "Login required!");
             }}
           ></div>
         ) : checkTransaction === "approved" ? (
@@ -84,7 +83,6 @@ export default function DetailInfo({ film, category }) {
               height: "100%",
               width: "100%",
               position: "absolute",
-              display: "none",
             }}
           ></div>
         )}
