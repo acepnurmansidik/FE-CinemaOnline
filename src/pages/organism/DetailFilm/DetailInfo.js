@@ -10,7 +10,6 @@ import {
 import NumberFormat from "react-number-format";
 import { useParams } from "react-router-dom";
 
-
 export default function DetailInfo({ film, category }) {
   const params = useParams();
   const [paymentModalShow, setPaymentModalShow] = useState(false);
@@ -20,6 +19,7 @@ export default function DetailInfo({ film, category }) {
 
   useEffect(async () => {
     const response = await getTransactionAfterLogin(params.id);
+    console.log(response.data.data);
     setCheckTransaction(response.data.data);
   }, []);
 
@@ -30,7 +30,7 @@ export default function DetailInfo({ film, category }) {
           <p>{film.title}</p>
         </div>
         <div className="film-btn-container">
-        {!checkTransaction ? (
+          {!checkTransaction ? (
             <Button
               className="base-btn"
               onClick={() => setPaymentModalShow(true)}
@@ -38,7 +38,7 @@ export default function DetailInfo({ film, category }) {
             >
               Buy Now
             </Button>
-          ) :null }
+          ) : null}
 
           <PaymentShow
             show={paymentModalShow}
@@ -68,14 +68,14 @@ export default function DetailInfo({ film, category }) {
               setForbidenModal(true);
             }}
           ></div>
-        ) : checkTransaction === "approved" ? (
+        ) : checkTransaction.status === "approved" ? (
           <div
             style={{
               height: "100%",
               width: "100%",
               position: "absolute",
+              display: "none",
             }}
-            onClick={() => setNotifModalShow(true)}
           ></div>
         ) : (
           <div
@@ -84,6 +84,7 @@ export default function DetailInfo({ film, category }) {
               width: "100%",
               position: "absolute",
             }}
+            onClick={() => setNotifModalShow(true)}
           ></div>
         )}
 
