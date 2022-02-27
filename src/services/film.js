@@ -49,7 +49,7 @@ export const getSearchFilms = (query) => {
     "Content-type": "application/json",
   };
 
-  return requestAPI({ url, method: "GET", headers, token: true });
+  return requestAPI({ url, method: "GET", headers });
 };
 
 // POST new film

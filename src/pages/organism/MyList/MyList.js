@@ -12,7 +12,10 @@ import jwtDecode from "jwt-decode";
 export default function MyList() {
   const router = useNavigate();
   const [films, setFilms] = useState([]);
-
+  let emptContent;
+  if (!films.length) {
+    emptContent = { height: "100vh" };
+  }
   useEffect(async () => {
     const response = await getMyListFilm();
     setFilms(response.data.films);
@@ -27,7 +30,7 @@ export default function MyList() {
     }
   }, [router]);
   return (
-    <Container className="container-my-listFilm">
+    <Container className="container-my-listFilm" style={emptContent}>
       <NavigationBar />
       <Row className="list-title-container">
         <p>My List Film</p>
