@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
-import { Button, Navbar, Container } from "react-bootstrap";
-import { Link } from "react-router-dom";
+import { Button, Navbar, Container, Form } from "react-bootstrap";
+import { Link, useNavigate } from "react-router-dom";
 import AdminDropdownMenu from "./AdminDropdownMenu";
 import UserDropdownMenu from "./UserDropdownMenu";
 import LoginModalShow from "./LoginModalShow";
@@ -9,10 +9,14 @@ import Cookies from "js-cookie";
 import jwtDecode from "jwt-decode";
 
 export default function NavigationBar() {
+  const router = useNavigate();
   const [loginModalShow, setloginModalShow] = useState(false);
   const [registerModalShow, setregisterModalShow] = useState(false);
   const [isLogin, setIsLogin] = useState(false);
   const [isAdmin, setIsAdmin] = useState({});
+  const [form, setForm] = useState({
+    sc: "",
+  });
 
   useEffect(() => {
     if (Cookies.get("token")) {
@@ -32,6 +36,18 @@ export default function NavigationBar() {
     setregisterModalShow(false);
   };
 
+  const handleOnChange = (e) => {
+    e.preventDefault();
+    setForm({
+      ...form,
+      [e.target.name]: e.target.value,
+    });
+  };
+
+  const handleOnSubmit = () => {
+    router(`/search?sc=${form.sc}`);
+  };
+
   return (
     <>
       <Navbar className="container-navbar">
@@ -47,6 +63,19 @@ export default function NavigationBar() {
             </div>
           </Navbar.Brand>
           <Navbar.Collapse className="justify-content-end">
+            <Form className="navbar-search-container" onSubmit={handleOnSubmit}>
+              <Form.Group
+                className="mb-3 search-input"
+                controlId="exampleForm.ControlInput1"
+              >
+                <Form.Control
+                  name="sc"
+                  onChange={handleOnChange}
+                  type="text"
+                  placeholder="Search..."
+                />
+              </Form.Group>
+            </Form>
             <Navbar.Text>
               {isLogin === true ? (
                 isAdmin.status === "admin" ? (

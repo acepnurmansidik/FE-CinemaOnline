@@ -65,3 +65,15 @@
 .dropMenuItem {
   background-color: blueviolet;
 }
+
+/* navbar search */
+.navbar-search-container {
+  padding: 23px 0 0 0;
+  width: 50%;
+}
+
+.navbar-search-container .form-control,
+.navbar-search-container .form-control:focus {
+  border: none;
+  background-color: #111;
+}

@@ -142,13 +142,13 @@ function PaymentShow({ film, setPaymentModalShow, ...props }) {
     data.append("accountNumber", form.accountNumber);
 
     const response = await setTransaction(data);
-    console.log(response);
     if (response.status === "success") {
       setPaymentModalShow(false);
       setNotification(
         response.status,
         "thank you for buying this film, please wait 1x24 hours because your transaction is in process"
       );
+      window.location.reload();
     }
   };
   return (
