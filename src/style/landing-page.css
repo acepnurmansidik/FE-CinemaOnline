@@ -74,3 +74,12 @@
 .card {
   background-color: transparent;
 }
+
+.see-detail {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 6em;
+  height: 100%;
+  color: #cd2e71;
+}

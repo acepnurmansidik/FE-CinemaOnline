@@ -22,6 +22,14 @@ export default function ListsFilm() {
               <img src={film.thumbnail} />
             </Link>
           ))}
+          <Link to={`/search?sc=`} style={{ textDecoration: "none" }}>
+            <div class="see-detail">
+              <h6>
+                See <br />
+                detail
+              </h6>
+            </div>
+          </Link>
         </div>
       </Col>
     </Row>

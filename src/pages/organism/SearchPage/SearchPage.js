@@ -17,7 +17,6 @@ export default function SearchPage() {
   useEffect(async () => {
     const response = await getSearchFilms(searchQuery.get("sc"));
     setFilms(response.data.films);
-    console.log(response.data.films);
   }, []);
 
   return (
@@ -33,6 +32,7 @@ export default function SearchPage() {
         <div className="list-film-user">
           {films.map((film) => (
             <Link
+              key={film.id}
               to={`/film/${film.id}`}
               style={{ color: "#FFF", textDecoration: "none", marginRight: 20 }}
             >
