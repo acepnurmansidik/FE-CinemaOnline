@@ -42,6 +42,16 @@ export const getMyListFilm = () => {
   return requestAPI({ url, method: "GET", token: true, headers });
 };
 
+// GET search film
+export const getSearchFilms = (query) => {
+  const url = `${ROOT_API}/search-film?sc=${query}`;
+  let headers = {
+    "Content-type": "application/json",
+  };
+
+  return requestAPI({ url, method: "GET", headers, token: true });
+};
+
 // POST new film
 export const setNewFilm = (data) => {
   const url = `${ROOT_API}/film`;

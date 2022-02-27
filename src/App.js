@@ -11,6 +11,7 @@ import CreateFilm from "./pages/organism/CreateFilm/CreateFilm";
 import Transactions from "./pages/organism/Transactions/Transactions";
 import PageNotFound from "./pages/organism/PageNotFound/PageNotFound";
 import Film from "./pages/organism/Film/Film";
+import SearchPage from "./pages/organism/SearchPage/SearchPage";
 
 export default function App() {
   return (
@@ -24,6 +25,7 @@ export default function App() {
           <Route exact path="/film" element={<CreateFilm />} />
           <Route exact path="/transactions" element={<Transactions />} />
           <Route exact path="/list-film" element={<Film />} />
+          <Route exact path="/search" element={<SearchPage />} />
           <Route path="*" element={<PageNotFound />} />
         </Routes>
       </Router>
