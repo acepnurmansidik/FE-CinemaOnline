@@ -1,6 +1,6 @@
 import { requestAPI } from "./config";
 
-const ROOT_API = `http://localhost:5000/api/v1`;
+const ROOT_API = `https://cinema-online-app.herokuapp.com/api/v1`;
 
 // POST user going transactions
 export const setTransaction = (data) => {
